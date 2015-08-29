@@ -1,0 +1,51 @@
+<div class="document-view">
+  <h1>{{document.title}} <span class="badge">{{document.score}} pts</span></h1>
+  <div btf-markdown="document.content">
+  </div>
+</div>
+<div>
+  Check final input:
+          <toggle-switch
+                         model="switchFileInput"
+                         class="switch-primary"
+                         html="true"
+                         on-label="<i class='glyphicon glyphicon-eye-open'></i>"
+                         off-label="<i class='glyphicon glyphicon-eye-close'></i>">
+          </toggle-switch>
+  <div>
+    <pre ng-hide="switchFileInput" >{{document.attachment[0].content}}</pre>
+  </div>
+</div>
+
+<div class="solution-feedback-area">
+  <alert ng-repeat="f in feedback" type="{{f.type}}" close="closeAlert($index)">{{f.msg}}</alert>
+</div>
+
+
+<div class="solution-attachment-area well">
+  <form  name="new_solution_form" role="form">
+
+    <div class="form-group row">
+      <label for="final-output" class="col-md-2 control-label">Attach your final output</label>
+      <div class="col-sm-10 slide-right">
+        <div ng-show="solution.output" class="alert alert-success animate-hide">Output ready</div>
+        <div ng-hide="solution.output" name="final-output" ng-file-reader on-readed="readFile(event, file, 'output')" class="form-control animate-hide" read-method="'readAsText'"></div>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <label for="final-code" class="col-md-2 control-label">Attach your code</label>
+      <div class="col-sm-10 slide-right">
+        <div ng-show="solution.code" class="alert alert-success animate-hide">Code ready</div>
+        <div  ng-hide="solution.code" name="final-code" ng-file-reader on-readed="readFile(event, file, 'code')" class="form-control animate-hide" read-method="'readAsText'"></div>
+      </div>
+    </div>    
+    
+    <div class="form-group last row">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button ng-click="submitSolution(solution)" class="btn btn-primary" ng-disabled="!solution.code || !solution.output">Submit</button>
+        <button ui-sref="documents.list" class="btn btn-default">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

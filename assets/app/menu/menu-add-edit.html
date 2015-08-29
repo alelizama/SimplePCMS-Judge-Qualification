@@ -1,0 +1,9 @@
+<h1>Add / Edit menu</h1>
+<form name="new_menu_form">
+    <div ng-repeat="(attr_name, attr_value) in model_def">
+        <label for="{{attr_name}}">{{attr_name}}</label>
+        <input type="text" ng-model="menu[attr_name]" name="{{attr_name}}" />
+    </div>
+    <button ng-click="save(menu)">Save menu</button>
+    <button ui-sref="menus.list">Cancel</button>
+</form>

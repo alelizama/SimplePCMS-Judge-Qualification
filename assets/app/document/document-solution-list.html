@@ -1,0 +1,13 @@
+<h1>Documents</h1>
+Listing all the solutions
+
+<ul class="documents list-group">
+  <li ng-repeat="document in documents | orderBy:'ownerName'" class="list-group-item" ng-show="document.type==='code'" >
+    <div class="icon">
+      <span class="glyphicon" ng-class="{ 'glyphicon-flash': document.type==='code' }"></span>
+    </div>
+    <h2>{{document.title}} - {{document.ownerName}}<span class="badge" ng-show="document.type==='code'">{{document.ownerScore}}</span></h2>
+    <div class="btn-group btn-group-sm">
+      <a class="btn btn-primary" href="" ui-sref="documents.qualify({ id: document.id })" >Qualify</a>
+    </div>
+  </li>

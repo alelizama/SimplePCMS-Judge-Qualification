@@ -1,0 +1,12 @@
+<h1>Menus</h1>
+<ul>
+    <li ng-repeat="menu in menus">
+        <div>
+            <p ng-repeat="(key, val) in model_def">{{key}} : {{menu[key]}}</p>
+        </div>
+        <a href="" ui-sref="menus.edit({ id: menu.id })">Edit</a>
+        <a href="" ng-click="remove(menu)">Delete</a>
+    </li>
+</ul>
+<div ng-show="menus.length === 0">Looks like you haven't added any menus yet?</div>
+<a ng-hide="adding" ui-sref="menus.add">Add A New Menu</a>

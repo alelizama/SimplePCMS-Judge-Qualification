@@ -1,0 +1,21 @@
+<h1>Leaderboard</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Problems</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="document in getDocuments() | orderBy:'ownerName':true" ng-show="document.type === 'code'">
+      <td>{{document.ownerName}}</td>
+      <td>
+        <span ng-repeat="solution in documents track by $index" ng-show="solution.type === 'code' && document.ownerName === solution.ownerName ">
+            <a ui-sref="documents.solve({id: solution._id})" class="label label-success">{{solution.title}}</a>
+        </span>
+      </td>
+      <td>{{getTotal(document.ownerName)}}</td>
+    </tr>
+  </tbody>
+</table>

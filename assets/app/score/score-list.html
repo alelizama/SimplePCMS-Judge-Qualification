@@ -1,0 +1,21 @@
+<h1>Leaderboard</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Problems</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="score in scores | orderBy:'value':true">
+      <td>{{score.ownerUsername}}</td>
+      <td>
+        <span ng-repeat="problemID in score.completed track by $index">
+          <a ui-sref="documents.solve({id: problemID})" class="label label-success">{{problemID}}</a>
+        </span>
+      </td>
+      <td>{{score.value}}</td>
+    </tr>
+  </tbody>
+</table>

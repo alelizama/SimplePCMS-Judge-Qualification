@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimplePCMS <%- title %></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+  </head>
+
+
+  <body ng-app="SimplePCMS">
+
+    <header class="banner navbar navbar-default navbar-fixed-top" role="banner">
+
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"  ui-sref="home">SimplePCMS</a>
+        </div>
+
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+          <ul class="nav navbar-nav">
+            <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">Home</a></li>
+            <li ng-class="{active: $state.includes('documents')}"  ><a ui-sref="documents.list">Documents</a></li>
+            <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
+            <li ng-class="{active: $state.includes('user')}" ><a ui-sref="users.list">Users</a></li>
+            <li ng-class="{active: $state.includes('documents')}" ><a ui-sref="documents.solutions">Solutions</a></li>
+            <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
+
+            <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+
+    <div class="container ui-view-container">
+      <!--<div class="" ui-view="aside"></div>-->
+      <div class="main-view" ui-view></div>
+    </div>
+
+
+    <!--TEMPLATES-->
+
+    <!--TEMPLATES END-->
+
+    <!--SCRIPTS-->
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/lodash/dist/lodash.min.js"></script>
+    <script src="/vendor/restangular/dist/restangular.min.js"></script>
+    <script src="/vendor/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/vendor/angular-animate/angular-animate.min.js"></script>
+    <script src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/vendor/angular-markdown-directive/markdown.js"></script>
+    <script src="/vendor/ngFileReader/src/ngFileReader.min.js"></script>
+    <script src="/vendor/angular-bootstrap-toggle-switch/angular-toggle-switch.min.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/app/auth/auth-controller.js"></script>
+    <script src="/app/auth/auth-factory.js"></script>
+    <script src="/app/auth/auth-routes.js"></script>
+    <script src="/app/components/sails-resource/sails-resource-service.js"></script>
+    <script src="/app/document/document-controller.js"></script>
+    <script src="/app/document/document-routes.js"></script>
+    <script src="/app/menu/menu-controller.js"></script>
+    <script src="/app/menu/menu-routes.js"></script>
+    <script src="/app/score/score-controller.js"></script>
+    <script src="/app/score/score-routes.js"></script>
+    <script src="/app/solution/solution-controller.js"></script>
+    <script src="/app/solution/solution-routes.js"></script>
+    <script src="/app/user/user-controller.js"></script>
+    <script src="/app/user/user-routes.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

@@ -1,0 +1,169 @@
+// Heads up! You must do npm install and bower install
+// otherwise you'll have a lot of missing dependencies
+// like bootstrap
+
+// Bootstrap base styles
+@import '../vendor/bootstrap/less/bootstrap.less';
+@import '../vendor/angular-bootstrap-toggle-switch/style/bootstrap3/angular-toggle-switch-bootstrap-3.less';
+
+// Bootstrap theme
+@import 'bootswatch.less';
+@import 'variables.less';
+
+// Our custom rules
+
+body {
+  //Because of fixed navbar
+  padding: 70px 0 30px;
+}
+
+//------------------
+
+.main-view {
+  position: relative;
+  min-height: 65px;
+  margin-bottom: 20px;
+  -webkit-transition:opacity .4s ease-in-out;
+  -moz-transition:opacity .4s ease-in-out;
+  -o-transition:opacity .4s ease-in-out;
+  transition:opacity .4s ease-in-out;
+}
+
+
+[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+}
+
+[ui-view].ng-enter {
+  transition-delay: .1s;
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+}
+
+[ui-view].ng-leave {
+  opacity: 1; 
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+}
+//---------------------------------------
+
+.form-group {
+  .ng-hide-add, .ng-hide-remove {
+    /* ensure visibility during the transition */
+    //display: block !important; /* yes, important */
+  }
+
+  .fancy-hide {
+    opacity: 1;
+    -webkit-transition: .5s linear all;  
+    transition: .5s linear all;
+  }
+
+  .fancy-hide.ng-hide {
+    opacity: 0;
+  }
+}
+
+.slide-right {
+  overflow: hidden;
+  
+  .fancy {
+    -webkit-transition: all ease 1.2s;
+    transition: all ease 1.2s;
+  }
+  
+  .ng-hide-remove {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .ng-hide {
+    opacity: 0;
+  }
+  
+  .ng-hide-remove {
+    transform: translateX(-100%);
+  }
+  
+  .ng-hide-add {
+    transform: translateX(100%);
+  } 
+  /*
+.my-element.ng-hide-add, .my-element.ng-hide-remove {
+  transition:0.5s linear all;
+}
+
+.my-element.ng-hide-add { ... }
+.my-element.ng-hide-add.ng-hide-add-active { ... }
+.my-element.ng-hide-remove { ... }
+.my-element.ng-hide-remove.ng-hide-remove-active { ... }
+  */
+}
+
+.animate-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  line-height:20px;
+  opacity:1;
+}
+
+.animate-hide.ng-hide {
+  line-height:0;
+  opacity:0;
+}
+
+//----------------------------------------
+
+#login-form {
+  .input-group {
+    margin-bottom: 10px;
+  }
+}
+
+.form-group.last {
+  position: relative;
+  top: 10px;
+}
+
+.document-view {
+  
+  h1.page {
+    background-color: @brand-primary;
+  }
+  
+  h1.problem {
+    background-color: @brand-success;
+  }
+}
+
+//----------
+
+.documents.list-group {
+  .icon {
+    width: 100px;
+    float: left;
+    text-align: center;
+    font-size: 4.5em;
+  }
+  
+  h2 {
+    margin: 0 0 5px;
+  }
+}
+
+.document-view {
+  margin-bottom: 40px;
+}
+
+//---------------
+
+.solution-feedback-area {
+  margin: 20px 0;
+}
+.solution-attachment-area {
+  margin: 10px 0 40px;
+}

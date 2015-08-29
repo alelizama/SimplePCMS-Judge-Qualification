@@ -1,0 +1,36 @@
+{
+  "name": "ngFileReader",
+  "version": "0.0.6",
+  "authors": [
+    "SparrowJang <sparrow.jang@gmail.com>"
+  ],
+  "description": "This is file reader component on angular",
+  "main": "src/ngFileReader.js",
+  "keywords": [
+    "file",
+    "reader",
+    "html5",
+    "flash"
+  ],
+  "dependencies": {
+    "angular": "~1.2.12"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/SparrowJang/ngFileReader",
+  "_release": "0.0.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.6",
+    "commit": "d64c6db47660397b645357b51fa761d8c41bc6aa"
+  },
+  "_source": "git://github.com/SparrowJang/ngFileReader.git",
+  "_target": "~0.0.4",
+  "_originalSource": "ngFileReader"
+}

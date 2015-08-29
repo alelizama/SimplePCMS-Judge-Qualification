@@ -1,0 +1,18 @@
+<div class="col-md-4 col-md-offset-4">
+  <h1>Welcome</h1>
+  <alert type="{{message.type}}" ng-show="message.msg">{{message.msg}}</alert>
+  <form id="login-form">
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+      <input class="form-control" type="text" placeholder="username" ng-model="pass.username">
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+      <input class="form-control" type="password" placeholder="password"  ng-model="pass.password">
+    </div>
+    <button ng-click="$parent.login(pass)" class="btn btn-primary">Login</button>
+    <button type="button" ui-sref="home"  class="btn btn-default" >Cancel</button>
+  </form>
+</div>
+
