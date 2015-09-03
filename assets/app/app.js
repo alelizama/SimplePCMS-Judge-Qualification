@@ -35,7 +35,7 @@
             }
             return newResponse;
           });
-      
+
             $urlRouterProvider
                 .when('/home', '/');
 
@@ -45,9 +45,15 @@
                     url: '/',
                     //controller: 'UserCtrl',
                     templateUrl: 'app/partials/home.tpl.html'
+                })
+                .state('user/home', {
+                    //abstract: true,
+                    url: '/',
+                    //controller: 'UserCtrl',
+                    templateUrl: 'app/user/home.tpl.html'
                 });
             $urlRouterProvider.otherwise("/home");
-      
+
         });
 
 })(

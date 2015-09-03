@@ -8,7 +8,7 @@
     .controller('SingleSolutionCtrl', SingleSolutionCtrl)
     .controller('SingleProblemCtrl', SingleProblemCtrl);
 
-  function DocumentCtrl($scope, $state, Documents, DocumentDefinition, SailsResourceService) {
+  function DocumentCtrl($scope, $state, Documents, DocumentDefinition, SailsResourceService, $window) {
     var resourceService = new SailsResourceService('documents');
 
     $scope.docs = [];
@@ -37,6 +37,30 @@
               console.error('An error occured: ' + err);
             });
     };
+
+    $scope.getUserType = function()
+    {
+        if($window.sessionStorage.token == undefined)
+        {
+          $state.go('home');
+        }
+        else
+        {
+          var base64Url = $window.sessionStorage.token.split('.')[1];
+          var base64 = base64Url.replace('-', '+').replace('_', '/');
+          var user = JSON.parse($window.atob(base64));
+          var rol = user.rol;
+          return rol;
+        }
+    };
+
+    $scope.getOwnerName = function()
+    {
+      var base64Url = $window.sessionStorage.token.split('.')[1];
+      var base64 = base64Url.replace('-', '+').replace('_', '/');
+      var user = JSON.parse($window.atob(base64));
+      return user.name;
+    }
 
     $scope.getDocuments = function()
     {

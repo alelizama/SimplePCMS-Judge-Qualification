@@ -1,12 +1,47 @@
-<h1>Users</h1>
-<ul>
-    <li ng-repeat="user in users">
-        <div>
-            <p ng-repeat="(key, val) in model_def">{{key}} : {{user[key]}}</p>
+    <header class="banner navbar navbar-default navbar-fixed-top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"  ui-sref="home">SimplePCMS</a>
         </div>
-        <a href="" ui-sref="users.edit({ id: user.id })">Edit</a>
-        <a href="" ng-click="remove(user)">Delete</a>
-    </li>
-</ul>
-<div ng-show="users.length === 0">Looks like you haven't added any users yet?</div>
-<a ng-hide="adding" ui-sref="users.add">Add A New User</a>
+
+        <nav class="collapse navbar-collapse navbar-right" role="navigation">
+          <ul class="nav navbar-nav"> 
+            <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.list">Documents</a></li>
+            <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
+            <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
+            <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
+            <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
+            <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+
+<h1>Users</h1>
+Listing all the users
+  <div class="documents list-group">
+    <div ng-repeat="user in users" class="list-group-item" ng-show="getUserType() === 'admin'">
+        <form  name="new_solution_form" role="form">
+          <h1>{{user.username}}</h1>
+          <label for="type" class="col-md-2 control-label">Password</label>
+          <div class="col-sm-10">
+            <p>{{user.password}}</p>
+          </div>
+          <label for="type" class="col-md-2 control-label">Rol</label>
+          <div class="col-sm-10">
+            <p>{{user.rol}}</p>
+          </div>
+        <a class="btn btn-primary" href="" ui-sref="users.edit({ id: user.id })">Edit</a>
+        <a class="btn btn-primary" href="" ng-click="remove(user)">Delete</a>
+      </form>
+    </div>
+  </div>
+<div ng-show="users.length === 0" ng-show="getUserType() === 'admin'">Looks like you haven't added any users yet?</div>
+<a ng-show="getUserType() === 'admin'" ui-sref="users.add">Add A New User</a>

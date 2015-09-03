@@ -23,6 +23,10 @@
                         }
                     },
                 })
+                .state('users.home', {
+                    url: '/home',
+                    templateUrl: 'app/user/home.tpl.html.html'
+                })
                 .state('users.list', {
                     url: '/list',
                     templateUrl: 'app/user/user-list.html'

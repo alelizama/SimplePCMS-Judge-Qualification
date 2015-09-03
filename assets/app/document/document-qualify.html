@@ -1,9 +1,34 @@
-<div class="">
+<header class="banner navbar navbar-default navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand"  ui-sref="home">SimplePCMS</a>
+    </div>
+
+    <nav class="collapse navbar-collapse navbar-right" role="navigation">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.list">Documents</a></li>
+        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
+        <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
+        <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="" >
   <h1><span ng-show="document.id">Qualify</span> Solution</h1>
   <alert type="{{message.type}}" ng-show="message.msg">{{message.msg}}</alert>
 
   <form  name="new_document_form" role="form">
-    <div class="form-group">
+    <div class="form-group" ng-show="getTypeUser() === 'judge'">
       <label for="title" class="col-md-2 control-label">Title</label>
       <div class="col-sm-10">
         <input type="text" id="title" name="title" class="form-control" ng-model="document.title" required disabled>

@@ -43,19 +43,6 @@ module.exports = {
     {
       if ( err) res.negotiate(err);
 
-      Document.create({
-        title: problemDoc.title ,
-        type: 'code',
-        score: problemDoc.score,
-        content: params.code,
-        solution: problemDoc.solution,
-        owner: usrID,
-        ownerName: user.username
-      }).exec(function(err, doc){
-        if (err) sails.log.error('[Document:code] Creation failed', err);
-      });
-    });
-
       //TODO: Rewrite this into Model logic (but later)
       var spectedOutput = problemDoc.attachment.length > 1 ? problemDoc.attachment[1].content : ""
           , diff = jsdiff.diffLines(spectedOutput, params.output.trim())
@@ -90,6 +77,19 @@ module.exports = {
               if (err) sails.log.error('[Score] Failed create', err);
               res.ok({'type': 'success', 'msg': 'Congratulations. Your solution is alright!'});
             });
+
+            Document.create({
+              title: problemDoc.title ,
+              type: 'code',
+              score: problemDoc.score,
+              content: params.code,
+              solution: problemDoc.solution,
+              owner: usrID,
+              ownerName: user.username
+            }).exec(function(err, doc){
+              if (err) sails.log.error('[Document:code] Creation failed', err);
+            });
+
           } else {
             sails.log.debug('score exists. UPDATE');
             if ( !_.contains(score.completed, problemDoc.id) ) {
@@ -117,6 +117,7 @@ module.exports = {
         //TODO: write new Document (with status "failed")
         res.ok({'type': 'danger', 'msg': 'Sorry, but your solution is not right!'});
       }
+    });
     });
   }
 

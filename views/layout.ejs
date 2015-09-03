@@ -28,12 +28,7 @@
         </div>
 
         <nav class="collapse navbar-collapse navbar-right" role="navigation">
-          <ul class="nav navbar-nav">
-            <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">Home</a></li>
-            <li ng-class="{active: $state.includes('documents')}"  ><a ui-sref="documents.list">Documents</a></li>
-            <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
-            <li ng-class="{active: $state.includes('user')}" ><a ui-sref="users.list">Users</a></li>
-            <li ng-class="{active: $state.includes('documents')}" ><a ui-sref="documents.solutions">Solutions</a></li>
+          <ul class="nav navbar-nav"> 
             <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
 
             <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
@@ -76,8 +71,6 @@
     <script src="/app/menu/menu-routes.js"></script>
     <script src="/app/score/score-controller.js"></script>
     <script src="/app/score/score-routes.js"></script>
-    <script src="/app/solution/solution-controller.js"></script>
-    <script src="/app/solution/solution-routes.js"></script>
     <script src="/app/user/user-controller.js"></script>
     <script src="/app/user/user-routes.js"></script>
     <!--SCRIPTS END-->

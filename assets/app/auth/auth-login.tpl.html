@@ -1,3 +1,24 @@
+<header class="banner navbar navbar-default navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand"  ui-sref="home">SimplePCMS</a>
+    </div>
+
+    <nav class="collapse navbar-collapse navbar-right" role="navigation">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">Home</a></li>
+        <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
+      </ul>
+    </nav>
+  </div>
+</header>
+
 <div class="col-md-4 col-md-offset-4">
   <h1>Welcome</h1>
   <alert type="{{message.type}}" ng-show="message.msg">{{message.msg}}</alert>
@@ -15,4 +36,3 @@
     <button type="button" ui-sref="home"  class="btn btn-default" >Cancel</button>
   </form>
 </div>
-
