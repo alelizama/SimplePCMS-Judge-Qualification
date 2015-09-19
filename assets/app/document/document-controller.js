@@ -11,6 +11,7 @@
   function DocumentCtrl($scope, $state, Documents, DocumentDefinition, SailsResourceService, $window) {
     var resourceService = new SailsResourceService('documents');
 
+    $scope.scores = [];
     $scope.docs = [];
     $scope.documents = Documents;
     $scope.model_def = DocumentDefinition.originalElement;
@@ -51,6 +52,25 @@
           var user = JSON.parse($window.atob(base64));
           var rol = user.rol;
           return rol;
+        }
+    };
+
+    $scope.redirectForUser = function()
+    {
+        if($window.sessionStorage.token == undefined)
+        {
+          $state.go('home');
+        }
+        else
+        {
+          var base64Url = $window.sessionStorage.token.split('.')[1];
+          var base64 = base64Url.replace('-', '+').replace('_', '/');
+          var user = JSON.parse($window.atob(base64));
+          var rol = user.rol;
+          if(rol == 'participant')
+          {
+            $state.go('^.list');
+          }
         }
     };
 
@@ -96,19 +116,73 @@
     $scope.getTotal = function(user)
     {
         user = user ;
+        var judges = [];
         var total = 0;
         for(var i = 0; i < $scope.documents.length; i++)
         {
           if($scope.documents[i].ownerName === user && $scope.documents[i].type === 'code')
           {
-              total = total + $scope.documents[i].ownerScore;
+            var doc = $scope.documents[i];
+            for(var j = 0; j < doc.finalScore.length; j++)
+            {
+              var exists = 0;
+              for(var k = 0; k < judges.length; k++)
+              {
+                  if(judges[k] == doc.finalScore[j].judge)
+                  {
+                    exists = 1;
+                    break;
+                  }
+              }
+              if(exists === 0)
+              {
+                  judges.push(doc.finalScore[i].judge);
+                  total = total + parseInt(doc.finalScore[j].score);
+              }
+            }
           }
         }
-        return parseInt(total);
+        if(judges.length === 0)
+        {
+          return parseFloat(total).toFixed(2);
+        }
+        else
+        {
+          return parseFloat(parseInt(total)/judges.length).toFixed(2);
+        }
     };
 
     $scope.saveQualify = function saveQualify(document) {
       document = document || $scope.document;
+      var array = document.finalScore;
+      var base64Url = $window.sessionStorage.token.split('.')[1];
+      var base64 = base64Url.replace('-', '+').replace('_', '/');
+      var user = JSON.parse($window.atob(base64));
+      var name = user.name;
+
+      var exists = 0;
+      if(undefined !== document.finalScore)
+      {
+        for(var i = 0; i < document.finalScore.length; i = i + 2)
+        {
+            var item = document.finalScore[i].judge;
+            if(item == name)
+            {
+              exists = 1;
+              document.finalScore[i].score = document.ownerScore;
+              break;
+            }
+        }
+        if(exists === 0)
+        {
+          document.finalScore[document.finalScore.length] = {'judge': name, 'score': document.ownerScore};
+        }
+      }
+      else
+      {
+        $scope.document.finalScore = [];
+        $scope.document.finalScore = {'judge': name, 'score': document.ownerScore};
+      } 
 
       return resourceService.save(document, $scope.documents)
             .then(function() {
@@ -169,9 +243,9 @@
       $scope.feedback.splice(index, 1);
     };
 
-    $scope.submitSolution = function(solution) {
+    $scope.submitSolution = function(solution)
+    {
       solution = solution || $scope.solution;
-
       if ( ! _.isEmpty( solution ) && !_.isEmpty(solution.output) )
         return $scope.document.post('solution', solution)
         .then(function(data) {

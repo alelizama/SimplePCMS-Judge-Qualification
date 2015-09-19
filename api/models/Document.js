@@ -38,6 +38,12 @@ module.exports = {
       type: 'integer',
       defaultsTo: 0
     },
+    finalScore:
+    {
+      type: 'array',
+      defaultsTo: []
+      // [{judge: 'string', score: 'integer'}, ... ]
+    },
     solution: {
       type: 'string'
     },

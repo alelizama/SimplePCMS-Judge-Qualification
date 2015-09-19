@@ -16,7 +16,7 @@ module.exports = {
 
   /**
    * Change the default behavioar of "list"
-   */ 
+   */
   list: function(req, res)
   {
     Document.find({

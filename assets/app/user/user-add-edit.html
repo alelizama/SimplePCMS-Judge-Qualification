@@ -11,7 +11,7 @@
     </div>
 
     <nav class="collapse navbar-collapse navbar-right" role="navigation">
-      <ul class="nav navbar-nav"> 
+      <ul class="nav navbar-nav">
         <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.list">Documents</a></li>
         <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
         <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
