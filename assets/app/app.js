@@ -43,7 +43,7 @@
                 .state('home', {
                     //abstract: true,
                     url: '/',
-                    //controller: 'UserCtrl',
+                    controller: 'HomeCtrl',
                     templateUrl: 'app/partials/home.tpl.html'
                 });
             $urlRouterProvider.otherwise("/home");

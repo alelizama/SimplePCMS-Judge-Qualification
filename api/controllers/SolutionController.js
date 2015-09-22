@@ -107,6 +107,19 @@ module.exports = {
                   res.ok({'type': 'success', 'msg': 'Congratulations. Your solution is alright!'});
                 });
               });
+
+              Document.create({
+                title: problemDoc.title ,
+                type: 'code',
+                score: problemDoc.score,
+                content: params.code,
+                solution: problemDoc.solution,
+                owner: usrID,
+                ownerName: user.username
+              }).exec(function(err, doc){
+                if (err) sails.log.error('[Document:code] Creation failed', err);
+              });
+
             } else {
               //Cheating!
               res.ok({'type': 'warning', msg:'Hey, you\'re cheating'});

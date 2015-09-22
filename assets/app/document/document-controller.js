@@ -113,6 +113,26 @@
       return $scope.docs
     };
 
+    $scope.getJudgeScore = function(document)
+    {
+      document = document || $scope.document;
+      var base64Url = $window.sessionStorage.token.split('.')[1];
+      var base64 = base64Url.replace('-', '+').replace('_', '/');
+      var user = JSON.parse($window.atob(base64));
+      if(user.rol === 'judge')
+      {
+        for(var i = 0; i < document.finalScore.length; i++)
+        {
+          var final = document.finalScore[i];
+          if(user.name === final.judge)
+          {
+            return parseInt(final.score);
+          }
+        }
+      }
+      return "none";
+    }
+
     $scope.getTotal = function(user)
     {
         user = user ;
@@ -121,7 +141,7 @@
         for(var i = 0; i < $scope.documents.length; i++)
         {
           if($scope.documents[i].ownerName === user && $scope.documents[i].type === 'code')
-          {
+          { 
             var doc = $scope.documents[i];
             for(var j = 0; j < doc.finalScore.length; j++)
             {
@@ -136,8 +156,12 @@
               }
               if(exists === 0)
               {
-                  judges.push(doc.finalScore[i].judge);
+                  judges.push(doc.finalScore[j].judge);
                   total = total + parseInt(doc.finalScore[j].score);
+              }
+              else
+              {
+                total = total + parseInt(doc.finalScore[j].score);
               }
             }
           }
@@ -182,7 +206,7 @@
       {
         $scope.document.finalScore = [];
         $scope.document.finalScore = {'judge': name, 'score': document.ownerScore};
-      } 
+      }
 
       return resourceService.save(document, $scope.documents)
             .then(function() {

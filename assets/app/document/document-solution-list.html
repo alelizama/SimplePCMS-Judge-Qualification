@@ -32,7 +32,7 @@ Listing all the solutions
       <span class="glyphicon" ng-class="{ 'glyphicon-flash': document.type==='code' }"></span>
     </div>
     <h2>{{document.title}} - {{document.ownerName}}
-      <span class="badge" ng-show="document.type==='code'">Average {{getTotal(document.ownerName)}}</span>
+      <span class="badge" ng-show="document.type==='code'">{{getJudgeScore(document)}}/{{document.score}}pts</span>
     </h2>
     <div class="btn-group btn-group-sm">
       <a class="btn btn-primary" href="" ui-sref="documents.qualify({ id: document.id })" >Qualify</a>
