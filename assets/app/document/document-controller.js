@@ -126,6 +126,8 @@
           var final = document.finalScore[i];
           if(user.name === final.judge)
           {
+            console.log(final.judge)
+            console.log(final.score)
             return parseInt(final.score);
           }
         }
@@ -141,7 +143,7 @@
         for(var i = 0; i < $scope.documents.length; i++)
         {
           if($scope.documents[i].ownerName === user && $scope.documents[i].type === 'code')
-          { 
+          {
             var doc = $scope.documents[i];
             for(var j = 0; j < doc.finalScore.length; j++)
             {
@@ -187,7 +189,7 @@
       var exists = 0;
       if(undefined !== document.finalScore)
       {
-        for(var i = 0; i < document.finalScore.length; i = i + 2)
+        for(var i = 0; i < document.finalScore.length; i++)
         {
             var item = document.finalScore[i].judge;
             if(item == name)
