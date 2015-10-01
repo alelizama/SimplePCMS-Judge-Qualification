@@ -26,12 +26,18 @@
 <h1>Add / Edit user</h1>
 <form name="new_user_form">
     <div class="form-group">
-      <div ng-repeat="(attr_name, attr_value) in model_def" ng-show="getUserType()==='admin'">
-          <label for="{{attr_name}}" class="col-md-2 control-label">{{attr_name}}</label>
-          <div class="col-sm-10">
-            <input type="text" id="title" name="{{attr_name}}"  class="form-control" ng-model="user[attr_name]">
-          </div>
+      <label for="title" class="col-md-2 control-label">Username</label>
+      <div class="col-sm-10">
+        <input type="text" id="title" name="title" class="form-control" ng-model="user.username" submit-required="true">
       </div>
+      <label for="title" class="col-md-2 control-label">Password</label>
+      <div class="col-sm-10">
+        <input type="text" id="title" name="title" class="form-control" ng-model="user.password" submit-required="true">
+      </div>
+      <label for="title" class="col-md-2 control-label">Role</label>
+      <div class="col-sm-10">
+        <input type="text" id="title" name="title" class="form-control" ng-model="user.rol" submit-required="true">
+      </div>      
     </div>
     <button class="btn btn-primary" ng-click="save(user)">Save user</button>
     <button class="btn btn-cancel"  ui-sref="users.list">Cancel</button>

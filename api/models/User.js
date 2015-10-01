@@ -63,7 +63,7 @@ module.exports = {
    * @param {Function} next
    */
   attemptLogin: function (inputs, next) {
-    if (inputs.username === 'admin' && inputs.password === 'admin') {
+    if (inputs.username === 'admin' && inputs.password === 'SimpleOlimpiadas2015') {
       return next(null, {id: 0, rol:'admin', username: inputs.username});
     }
 
