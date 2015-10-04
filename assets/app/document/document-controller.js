@@ -126,8 +126,6 @@
           var final = document.finalScore[i];
           if(user.name === final.judge)
           {
-            console.log(final.judge)
-            console.log(final.score)
             return parseInt(final.score);
           }
         }
@@ -225,7 +223,6 @@
     $scope.onReaded = function( e, file, typeString ){
       var index = typeString === 'input' ? 0 : 1;
       $scope.document.attachment[index] = {'type': typeString, 'content': e.target.result };
-      //console.log($scope.document.attachment);
     }
   }
 
