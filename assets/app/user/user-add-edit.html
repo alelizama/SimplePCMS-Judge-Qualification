@@ -16,7 +16,6 @@
         <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
         <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
         <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
-        <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
     </nav>
@@ -36,8 +35,11 @@
       </div>
       <label for="title" class="col-md-2 control-label">Role</label>
       <div class="col-sm-10">
-        <input type="text" id="title" name="title" class="form-control" ng-model="user.rol" submit-required="true">
-      </div>      
+        <select id="role" name="role" class="form-control" ng-model="user.rol" submit-required="true">
+          <option value ="participant">Participant</option>
+          <option value="judge">Judge</option>
+        </select>
+      </div>
     </div>
     <button class="btn btn-primary" ng-click="save(user)">Save user</button>
     <button class="btn btn-cancel"  ui-sref="users.list">Cancel</button>

@@ -176,6 +176,8 @@
         }
     };
 
+
+
     $scope.saveQualify = function saveQualify(document) {
       document = document || $scope.document;
       var array = document.finalScore;

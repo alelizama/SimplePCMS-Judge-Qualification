@@ -120,13 +120,17 @@ module.exports = {
                 if (err) sails.log.error('[Document:code] Creation failed', err);
               });
 
-            } else {
+            }
+            else
+            {
               //Cheating!
-              res.ok({'type': 'warning', msg:'Hey, you\'re cheating'});
+              res.ok({'type': 'warning', msg:'Hey! You already upload a solution!'});
             }
           }
         });
-      } else {
+      }
+      else
+      {
         //TODO: write new Document (with status "failed")
         res.ok({'type': 'danger', 'msg': 'Sorry, but your solution is not right!'});
       }

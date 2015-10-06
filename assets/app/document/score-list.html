@@ -16,7 +16,6 @@
         <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
         <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
         <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
-        <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
     </nav>
@@ -38,7 +37,7 @@
       <td>{{document.ownerName}}</td>
       <td>
         <span ng-repeat="solution in documents track by $index" ng-show="solution.type === 'code' && solution.ownerName === getOwnerName()">
-            <a ui-sref="documents.solve({id: solution._id})" class="label label-success" ng-show="document.ownerName === getOwnerName()  && getUserType()==='participant'">{{solution.title}}</a>
+            <a class="label label-success" ng-show="document.ownerName === getOwnerName()  && getUserType()==='participant'">{{solution.title}}</a>
         </span>
       </td>
       <td ng-show="document.ownerName === getOwnerName()"> {{getTotal(document.ownerName)}}</td>
@@ -50,7 +49,7 @@
       <td>{{document.ownerName}}</td>
       <td>
         <span ng-repeat="solution in documents track by $index" ng-show="solution.type === 'code' && document.ownerName === solution.ownerName ">
-            <a ui-sref="documents.solve({id: solution._id})" class="label label-success">{{solution.title}}</a>
+            <a class="label label-success">{{solution.title}}</a>
         </span>
       </td>
       <td>{{getTotal(document.ownerName)}}</td>

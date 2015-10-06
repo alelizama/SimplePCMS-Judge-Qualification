@@ -16,7 +16,6 @@
         <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
         <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
         <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
-        <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
     </nav>
@@ -34,6 +33,7 @@ Listing all the solutions
     <h2>{{document.title}} - {{document.ownerName}}
       <span class="badge" ng-show="document.type==='code'">{{getJudgeScore(document)}}/{{document.score}}pts</span>
     </h2>
+    <span class="badge" ng-show="document.type==='code'">date: {{document.createdAt}}</span>
     <div class="btn-group btn-group-sm">
       <a class="btn btn-primary" href="" ui-sref="documents.qualify({ id: document.id })" >Qualify</a>
     </div>
