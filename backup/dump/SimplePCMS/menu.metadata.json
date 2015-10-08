@@ -1,0 +1,1 @@
+{ "options" : { "create" : "menu" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "SimplePCMS.menu", "name" : "_id_" } ] }
