@@ -113,6 +113,11 @@
       return $scope.docs
     };
 
+    $scope.getStatus = function(document)
+    {
+      document = document || $scope.document;
+      return document.status;
+    }
     $scope.getJudgeScore = function(document)
     {
       document = document || $scope.document;
@@ -175,8 +180,6 @@
           return parseFloat(parseInt(total)/judges.length).toFixed(2);
         }
     };
-
-
 
     $scope.saveQualify = function saveQualify(document) {
       document = document || $scope.document;

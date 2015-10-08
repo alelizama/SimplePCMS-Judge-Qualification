@@ -29,9 +29,9 @@ module.exports = {
     var usrID = req.usr !== undefined ? req.usr.id : 0;
     var usrNick = req.usr !== undefined ? req.usr.name : 'ghost';
     var jsdiff = require('diff');
+    var stat = "";
 
     sails.log.debug("let's see \n", params);
-
     Document.findOne({
       id: params.problemID
     }).exec(function(err, problemDoc){
@@ -61,12 +61,11 @@ module.exports = {
 
       sails.log.debug('problem submition, sucess: ', ok);
 
-      if( ok ) {
-
         Score.findOne({'ownerID': usrID}).exec(function(err, score){
           if (err) res.negotiate(err);
 
-          if(_.isEmpty(score)){
+          if(_.isEmpty(score))
+          {
             sails.log.silly('score doesn\'t exists. CREATE');
             Score.create({
               'ownerID': usrID,
@@ -75,9 +74,25 @@ module.exports = {
               'value': problemDoc.score
             }).exec(function(err, score){
               if (err) sails.log.error('[Score] Failed create', err);
-              res.ok({'type': 'success', 'msg': 'Congratulations. Your solution is alright!'});
+
+              if( ok )
+              {
+                res.ok({'type': 'success', 'msg': 'Congratulations. Your solution is alright!'});
+              }
+              else
+              {
+                res.ok({'type': 'danger', 'msg': 'Sorry, but your solution is not right!'});
+              }
             });
 
+            if(ok)
+            {
+              stat = "success";
+            }
+            else
+            {
+              stat = "failure";
+            }
             Document.create({
               title: problemDoc.title ,
               type: 'code',
@@ -85,7 +100,8 @@ module.exports = {
               content: params.code,
               solution: problemDoc.solution,
               owner: usrID,
-              ownerName: user.username
+              ownerName: user.username,
+              status: stat
             }).exec(function(err, doc){
               if (err) sails.log.error('[Document:code] Creation failed', err);
             });
@@ -104,10 +120,25 @@ module.exports = {
                 }, {w:1}, function(err, something){
                   if (err) sails.log.error('[Score] Failed update', err);
                   sails.log.debug(something);
-                  res.ok({'type': 'success', 'msg': 'Congratulations. Your solution is alright!'});
+
+                  if( ok )
+                  {
+                    res.ok({'type': 'success', 'msg': 'Congratulations. Your solution is alright!'});
+                  }
+                  else
+                  {
+                    res.ok({'type': 'danger', 'msg': 'Sorry, but your solution is not right!'});
+                  }
                 });
               });
-
+              if(ok)
+              {
+                stat = "success";
+              }
+              else
+              {
+                stat = "failure";
+              }
               Document.create({
                 title: problemDoc.title ,
                 type: 'code',
@@ -115,11 +146,11 @@ module.exports = {
                 content: params.code,
                 solution: problemDoc.solution,
                 owner: usrID,
-                ownerName: user.username
+                ownerName: user.username,
+                status: stat
               }).exec(function(err, doc){
                 if (err) sails.log.error('[Document:code] Creation failed', err);
               });
-
             }
             else
             {
@@ -128,12 +159,6 @@ module.exports = {
             }
           }
         });
-      }
-      else
-      {
-        //TODO: write new Document (with status "failed")
-        res.ok({'type': 'danger', 'msg': 'Sorry, but your solution is not right!'});
-      }
     });
     });
   }
