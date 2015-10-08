@@ -34,7 +34,7 @@ Listing all the documents (Pages or Problems)
     </div>
     <h2>{{document.title}} <span class="badge" ng-show="document.type==='problem' && document.score">{{document.score}}pts</span></h2>
     <div class="btn-group btn-group-sm">
-      <a class="btn btn-primary" href="" ui-sref="documents.view({ id: document.id })">View</a>
+      <a class="btn btn-primary" href="" ui-sref="documents.edit({ id: document.id })">View</a>
       <a class="btn btn-secondary" href="" ui-sref="documents.solve({ id: document.id })" ng-show="document.type==='problem' && getUserType()==='participant'">Solve</a>
       <a class="btn btn-default" href="" ui-sref="documents.edit({ id: document.id })" ng-show="getUserType() === 'admin'">Edit</a>
       <a class="btn btn-default" href="" ng-click="remove(document)" ng-show="getUserType() === 'admin'">Delete</a>
