@@ -5,7 +5,7 @@
   ng.module('SimplePCMS')
       .controller('HomeCtrl', HomeCtrl)
 
-  function HomeCtrl($scope, $state, $http, $window)
+  function HomeCtrl($scope, $state, $http, $window, $translate)
   {
         $scope.getUserType = function()
         {
@@ -20,6 +20,11 @@
           else {
             return "none";
           }
+        };
+
+        $scope.changeLanguage = function(key)
+        {
+          $translate.use(key);
         };
   }
 

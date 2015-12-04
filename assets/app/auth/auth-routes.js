@@ -1,13 +1,12 @@
-(function(ng) {
-    
+(function(ng)
+{
     'use strict';
-
     ng.module('SimplePCMS')
-        .config(function($stateProvider, $urlRouterProvider) {
-
+        .config(function($stateProvider, $urlRouterProvider)
+        {
             $urlRouterProvider
                 .when('/auth', '/auth/login');
-      
+
             $stateProvider
                 .state('auth', {
                     abstract: true,

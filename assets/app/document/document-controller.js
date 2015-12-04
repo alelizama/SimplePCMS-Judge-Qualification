@@ -8,7 +8,8 @@
     .controller('SingleSolutionCtrl', SingleSolutionCtrl)
     .controller('SingleProblemCtrl', SingleProblemCtrl);
 
-  function DocumentCtrl($scope, $state, Documents, DocumentDefinition, SailsResourceService, $window) {
+  function DocumentCtrl($scope, $state, Documents, DocumentDefinition, SailsResourceService, $window, $translate)
+  {
     var resourceService = new SailsResourceService('documents');
 
     $scope.scores = [];
@@ -20,14 +21,22 @@
     $scope.document.type = $scope.documentTypes[0];
     $scope.message = { msg: '', type:'' };
 
-    $scope.remove = function remove(document) {
+    $scope.changeLanguage = function(key)
+    {
+      $translate.use(key);
+    };
+
+    $scope.remove = function remove(document)
+    {
       document = document || $scope.document;
-      if (window.confirm('Are you sure you want to delete this document?')) {
+      if (window.confirm('Are you sure you want to delete this document?'))
+      {
         return resourceService.remove(document, $scope.documents);
       }
     };
 
-    $scope.save = function save(document) {
+    $scope.save = function save(document)
+    {
       document = document || $scope.document;
 
       return resourceService.save(document, $scope.documents)
@@ -118,6 +127,7 @@
       document = document || $scope.document;
       return document.status;
     }
+
     $scope.getJudgeScore = function(document)
     {
       document = document || $scope.document;
@@ -181,7 +191,8 @@
         }
     };
 
-    $scope.saveQualify = function saveQualify(document) {
+    $scope.saveQualify = function saveQualify(document)
+    {
       document = document || $scope.document;
       var array = document.finalScore;
       var base64Url = $window.sessionStorage.token.split('.')[1];
@@ -225,13 +236,15 @@
     $scope.switchFileInput = true;
     $scope.switchFileOutput = true;
 
-    $scope.onReaded = function( e, file, typeString ){
+    $scope.onReaded = function( e, file, typeString )
+    {
       var index = typeString === 'input' ? 0 : 1;
       $scope.document.attachment[index] = {'type': typeString, 'content': e.target.result };
     }
   }
 
-  function SingleDocumentCtrl($scope, $stateParams, Documents, DocumentDefinition) {
+  function SingleDocumentCtrl($scope, $stateParams, Documents, DocumentDefinition)
+  {
     $scope.documentTypes = ['page','problem']; // Eeyup, hardcoded bro /)
 
     $scope.document = _.find(Documents, {
@@ -241,21 +254,25 @@
 
   function SingleSolutionCtrl($scope, $stateParams, Documents, DocumentDefinition)
   {
-    $scope.document = _.find(Documents, {
+    $scope.document = _.find(Documents,
+    {
       id: $stateParams.id
     });
   }
 
 
-  function SingleProblemCtrl($scope, $stateParams, Documents, Restangular) {
+  function SingleProblemCtrl($scope, $stateParams, Documents, Restangular)
+  {
 
-    $scope.document = _.find(Documents, {
+    $scope.document = _.find(Documents,
+    {
       id: $stateParams.id
     });
 
     $scope.solution = {};
 
-    $scope.readFile = function(e, file, flag) {
+    $scope.readFile = function(e, file, flag)
+    {
       if (flag === 'output'){
         $scope.solution.output = e.target.result;
       } else {
@@ -267,7 +284,8 @@
       //{ type: 'info', msg: 'Submit your solution here' }
     ];
 
-    $scope.closeAlert = function(index) {
+    $scope.closeAlert = function(index)
+    {
       $scope.feedback.splice(index, 1);
     };
 
@@ -276,9 +294,11 @@
       solution = solution || $scope.solution;
       if ( ! _.isEmpty( solution ) && !_.isEmpty(solution.output) )
         return $scope.document.post('solution', solution)
-        .then(function(data) {
+        .then(function(data)
+        {
           $scope.feedback.push({type: data.type, msg: data.msg });
-        }, function(err){
+        }, function(err)
+        {
           console.log("Error while uploading", err);
         });
     }

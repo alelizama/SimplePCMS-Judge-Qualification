@@ -5,12 +5,16 @@
   ng.module('SimplePCMS')
       .controller('AuthCtrl', AuthCtrl)
 
-  function AuthCtrl($scope, $state, $http, $window) {
+  function AuthCtrl($scope, $state, $http, $window, $translate)
+  {
     $scope.name = {t: 'hello!'};
-
     $scope.pass = {};
-
     $scope.message = {type: 'danger', msg:''}
+
+    $scope.changeLanguage = function(key)
+    {
+      $translate.use(key);
+    };
 
     $scope.login = function (pass)
     {

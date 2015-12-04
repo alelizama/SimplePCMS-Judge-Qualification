@@ -13,11 +13,11 @@
 
     <nav collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge' || getUserType() === 'participant'"><a ui-sref="documents.list">Documents</a></li>
-        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge' || getUserType() === 'participant'"><a ui-sref="documents.score">Scores</a></li>
-        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
-        <li ng-class="{active: $state.includes('documents')}" ng-show="(getUserType()==='admin' || getUserType() === 'judge')" ><a ui-sref="documents.solutions">Solutions</a></li>
-        <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login">Login</a></li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge' || getUserType() === 'participant'"><a ui-sref="documents.list" translate="DOCUMENTS"></a></li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge' || getUserType() === 'participant'"><a ui-sref="documents.score" translate="SCORES"></a></li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list" translate="USERS"></a></li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="(getUserType()==='admin' || getUserType() === 'judge')" ><a ui-sref="documents.solutions" translate="SOLUTIONS"></a></li>
+        <li ng-class="{active: $state.includes('login')}" ><a ui-sref="auth.login" translate="LOGIN"></a></li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
         <div class="container navbar-form navbar-right"></div>
@@ -25,5 +25,12 @@
   </div>
 </header>
 
-<h1>Welcome!</h1>
+<div class="form-group">
+    <input type="image" src="images/spain.png" ng-click="changeLanguage('es')" width="30" height="20">
+    <input type="image" src="images/us.jpg" ng-click="changeLanguage('en')" width="30" height="20">
+</div>
+
+<h1 translate="WELCOME"></h1>
+
+
 <div class="col-sm-12"><img src="/images/olimpiada.jpg" class="img-responsive" alt="Afiche"></div>

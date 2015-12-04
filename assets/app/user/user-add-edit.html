@@ -13,10 +13,10 @@
 
       <nav collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.list">Documents</a></li>
-        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
-        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
-        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
+        <li ng-class="{active: $state.includes('documents')}"><a <a ui-sref="documents.list" translate="DOCUMENTS"></a></li>
+        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score" translate="SCORES"></a></li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list" translate="USERS"></a></li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions" translate="SOLUTIONS"></a></li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
       <div class="container navbar-form navbar-right"></div>

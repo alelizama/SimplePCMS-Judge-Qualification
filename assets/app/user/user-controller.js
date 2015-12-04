@@ -6,12 +6,17 @@
         .controller('UserCtrl', UserCtrl)
         .controller('SingleUserCtrl', SingleUserCtrl);
 
-    function UserCtrl($scope, $state, $window, Users, UserDefinition, SailsResourceService) {
+    function UserCtrl($scope, $state, $window, Users, UserDefinition, SailsResourceService, $translate) {
         var resourceService = new SailsResourceService('users');
 
         $scope.users = Users;
         $scope.model_def = UserDefinition.originalElement;
         $scope.user = {};
+
+        $scope.changeLanguage = function(key)
+        {
+          $translate.use(key);
+        };
 
         $scope.remove = function remove(user) {
             user = user || $scope.user;

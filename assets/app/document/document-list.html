@@ -13,19 +13,22 @@
 
       <nav collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.list">Documents</a></li>
-        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
-        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
-        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
+        <li ng-class="{active: $state.includes('documents')}"><a <a ui-sref="documents.list" translate="DOCUMENTS"></a></li>
+        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score" translate="SCORES"></a></li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list" translate="USERS"></a></li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions" translate="SOLUTIONS"></a></li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
       <div class="container navbar-form navbar-right"></div>
     </nav>
   </div>
 </header>
-
-<h1>Documents</h1>
-Listing all the documents (Pages or Problems)
+<div class="form-group">
+    <input type="image" src="images/spain.png" ng-click="changeLanguage('es')" width="30" height="20">
+    <input type="image" src="images/us.jpg" ng-click="changeLanguage('en')" width="30" height="20">
+</div>
+<h1 translate="DOCUMENTS"></h1>
+<a translate="LISTDOCUMENTS"></a>
 
 <ul class="documents list-group">
   <li ng-repeat="document in documents" class="list-group-item" ng-show="document.type !== 'code'">
@@ -34,11 +37,11 @@ Listing all the documents (Pages or Problems)
     </div>
     <h2>{{document.title}} <span class="badge" ng-show="document.type==='problem' && document.score">{{document.score}}pts</span></h2>
     <div class="btn-group btn-group-sm">
-      <a class="btn btn-primary" href="" ui-sref="documents.edit({ id: document.id })">View</a>
+      <a class="btn btn-primary" href="" ui-sref="documents.edit({ id: document.id })" translate="VIEW"></a>
       <a class="btn btn-secondary" href="" ui-sref="documents.solve({ id: document.id })" ng-show="document.type==='problem' && getUserType()==='participant'">Solve</a>
-      <a class="btn btn-default" href="" ui-sref="documents.edit({ id: document.id })" ng-show="getUserType() === 'admin'">Edit</a>
-      <a class="btn btn-default" href="" ng-click="remove(document)" ng-show="getUserType() === 'admin'">Delete</a>
+      <a class="btn btn-default" href="" ui-sref="documents.edit({ id: document.id })" ng-show="getUserType() === 'admin'" translate="EDIT"></a>
+      <a class="btn btn-default" href="" ng-click="remove(document)" ng-show="getUserType() === 'admin'" translate="DELETE"></a>
     </div>
   </li>
-<div ng-show="documents.length === 0" ng-show="getUserType() === 'admin'">Looks like you haven't added any documents yet?</div>
-<a ng-show="getUserType() === 'admin'" ui-sref="documents.add" >Add A New Document</a>
+<div ng-show="documents.length === 0" ng-show="getUserType() === 'admin'" translate="ANYDOCUMENT"></div>
+<a ng-show="getUserType() === 'admin'" ui-sref="documents.add" translate="ADDNEW"></a>

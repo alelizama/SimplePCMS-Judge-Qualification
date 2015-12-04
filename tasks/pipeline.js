@@ -23,7 +23,7 @@ var jsFilesToInject = [
   //'vendor/angular/angular.min.js',
   'vendor/angular/angular.js',
   'vendor/lodash/dist/lodash.min.js',
-  // Angular + easy REST 
+  // Angular + easy REST
   'vendor/restangular/dist/restangular.min.js',
   // Angular Sanitize
   'vendor/angular-sanitize/angular-sanitize.min.js',
@@ -41,7 +41,8 @@ var jsFilesToInject = [
   'vendor/ngFileReader/src/ngFileReader.min.js',
   // ui toggle switch
   'vendor/angular-bootstrap-toggle-switch/angular-toggle-switch.min.js',
-      
+  // Angular translate
+  'vendor/angular-translate/angular-translate.min.js',
   // ng-appt
   'app/app.js',
   'app/**/*.js'

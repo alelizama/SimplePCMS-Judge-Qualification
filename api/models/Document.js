@@ -5,36 +5,44 @@
 * @docs        :: docs/?
 */
 
-module.exports = {
-
+module.exports =
+{
   schema: false,
   autoCreatedAt: true,
   autoUpdatedAd: true,
 
-  attributes: {
-    title: {
+  attributes:
+  {
+    title:
+    {
       type: 'string',
       required: true
     },
-    type: {
+    type:
+    {
       type: 'string',
       defaultsTo: 'page'    // page, problem, solution
     },
-    content: {
+    content:
+    {
       type: 'text',
       required: true
     },
-    status: {
+    status:
+    {
       type: 'string',
       defaultsTo: 'publish'
     },
-    owner: {
+    owner:
+    {
       type: 'string'
     },
-    ownerName: {
+    ownerName:
+    {
       type: 'string'
     },
-    ownerScore: {
+    ownerScore:
+    {
       type: 'integer',
       defaultsTo: 0
     },
@@ -44,15 +52,22 @@ module.exports = {
       defaultsTo: []
       // [{judge: 'string', score: 'integer'}, ... ]
     },
-    solution: {
+    solution:
+    {
+      type: 'string'
+    },
+    output:
+    {
       type: 'string'
     },
     // The proof of the urge of a refactor
-    score: {
+    score:
+    {
       type: 'integer',
       defaultsTo: 0
     },
-    attachment: {
+    attachment:
+    {
       type: 'array'
       // [{id: 'string', type: 'finalInput'}, ... ]
     },
@@ -73,7 +88,8 @@ module.exports = {
     },*/
 
     // We don't need to spit the solution right?
-    toJSON: function () {
+    toJSON: function ()
+    {
       var obj = this.toObject();
       if (obj.type === 'problem' && obj.attachment !== undefined)
         delete obj.attachment[1];

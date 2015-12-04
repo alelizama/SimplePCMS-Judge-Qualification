@@ -13,10 +13,10 @@
 
           <nav collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.list">Documents</a></li>
-            <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score">Scores</a></li>
-            <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list">Users</a></li>
-            <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions">Solutions</a></li>
+            <li ng-class="{active: $state.includes('documents')}"><a <a ui-sref="documents.list" translate="DOCUMENTS"></a></li>
+            <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score" translate="SCORES"></a></li>
+            <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list" translate="USERS"></a></li>
+            <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions" translate="SOLUTIONS"></a></li>
             <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
           </ul>
       <div class="container navbar-form navbar-right"></div>
@@ -24,25 +24,37 @@
       </div>
     </header>
 
+    <div class="form-group">
+        <input type="image" src="images/spain.png" ng-click="changeLanguage('es')" width="30" height="20">
+        <input type="image" src="images/us.jpg" ng-click="changeLanguage('en')" width="30" height="20">
+    </div>
 
-<h1>Users</h1>
-Listing all the users
+<h1 ng-show="users.lenght !== 0" translate="PARTICIPANTS"></h1>
+<p ng-show = "users.lenght !== 0" translate="LISTPARTICIPANTS"></p>
   <div class="documents list-group">
-    <div ng-repeat="user in users | orderBy:'rol':true"  class="list-group-item" ng-show="getUserType() === 'admin'">
+    <div ng-repeat="user in users | orderBy:'rol':true"  class="list-group-item" ng-show="getUserType() === 'admin' && user.rol=='participant'">
         <form  name="new_solution_form" role="form">
-          <h1>{{user.username}}</h1>
-          <label for="type" class="col-md-2 control-label">Password</label>
-          <div class="col-sm-10">
-            <p>{{user.password}}</p>
-          </div>
-          <label for="type" class="col-md-2 control-label">Rol</label>
-          <div class="col-sm-10">
-            <p>{{user.rol}}</p>
-          </div>
-        <a class="btn btn-primary" href="" ui-sref="users.edit({ id: user.id })">Edit</a>
-        <a class="btn btn-primary" href="" ng-click="remove(user)">Delete</a>
+          <h1>{{user.username}}
+          <!--<span class="badge">{{user.rol}}</span>-->
+          </h1>
+        <a class="btn btn-primary" href="" ui-sref="users.edit({ id: user.id })" translate="EDIT"></a>
+        <a class="btn btn-primary" href="" ng-click="remove(user)" translate="DELETE"></a>
       </form>
     </div>
   </div>
-<div ng-show="users.length === 0" ng-show="getUserType() === 'admin'">Looks like you haven't added any users yet?</div>
-<a ng-show="getUserType() === 'admin'" ui-sref="users.add">Add A New User</a>
+
+<h1 ng-show="users.lenght !== 0" translate="JUDGES"></h1>
+  <p ng-show = "users.lenght !== 0" translate="LISTJUDGES"></p>
+    <div class="documents list-group">
+      <div ng-repeat="user in users | orderBy:'rol':true"  class="list-group-item" ng-show="getUserType() === 'admin' && user.rol=='judge'">
+          <form  name="new_solution_form" role="form">
+            <h1>{{user.username}}
+            <!--<span class="badge">{{user.rol}}</span>-->
+            </h1>
+          <a class="btn btn-primary" href="" ui-sref="users.edit({ id: user.id })" translate="EDIT"></a>
+          <a class="btn btn-primary" href="" ng-click="remove(user)" translate="DELETE"></a>
+        </form>
+      </div>
+    </div>
+<div ng-show="users.length === 0" ng-show="getUserType() === 'admin'" translate="ANYUSER"></div>
+<a ng-show="getUserType() === 'admin'" ui-sref="users.add" translate="ADDNEWUSER"></a>
