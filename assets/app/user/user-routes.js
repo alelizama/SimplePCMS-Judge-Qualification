@@ -40,6 +40,10 @@
                     controller: 'SingleUserCtrl',
                     templateUrl: 'app/user/user-info.html'
                 })
+                .state('users.resume', {
+                    url: '/resume/',
+                    templateUrl: 'app/user/user-resume.html'
+                })
                 .state('users.edit', {
                     url: '/edit/:id',
                     controller: 'SingleUserCtrl',

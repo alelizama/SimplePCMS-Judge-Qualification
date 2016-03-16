@@ -46,6 +46,20 @@
           }
         }
 
+        $scope.getUserCount = function()
+        {
+          var count = 0;
+          for(var i = 0; i < $scope.users.length; i++)
+          {
+            var tempUser = $scope.users[i];
+            if(tempUser.rol === 'participant')
+            {
+              count = count + 1;
+            }
+          }
+          return count;
+        }
+
         $scope.save = function save(user) {
             user = user || $scope.user;
             return resourceService.save(user, $scope.users)

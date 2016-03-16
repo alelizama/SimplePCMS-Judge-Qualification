@@ -17,6 +17,7 @@
         <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge' || getUserType() === 'participant'"><a ui-sref="documents.score" translate="SCORES"></a></li>
         <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list" translate="USERS"></a></li>
         <li ng-class="{active: $state.includes('documents')}" ng-show="(getUserType()==='admin' || getUserType() === 'judge')" ><a ui-sref="documents.solutions" translate="SOLUTIONS"></a></li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'"><a ui-sref="users.resume" translate="RESUME"></a></li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
       <div class="container navbar-form navbar-right"></div>
