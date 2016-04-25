@@ -1,0 +1,140 @@
+<header class="banner navbar navbar-default navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle btn navbar-btn" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="home">IX Olimpiada Interuniversitaria</a>
+    </div>
+
+    <nav collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $state.includes('documents')}">
+          <a <a ui-sref="documents.list" translate="DOCUMENTS"></a>
+        </li>
+        <li ng-class="{active: $state.includes('documents')}">
+          <a ui-sref="documents.score" translate="SCORES"></a>
+        </li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'">
+          <a ui-sref="users.list" translate="USERS"></a>
+        </li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'">
+          <a ui-sref="documents.solutions" translate="SOLUTIONS"></a>
+        </li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'">
+          <a ui-sref="users.resume" translate="RESUME"></a>
+        </li>
+        <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
+      </ul>
+      <div class="container navbar-form navbar-right"></div>
+    </nav>
+  </div>
+</header>
+
+<div class="form-group">
+  <input type="image" src="images/spain.png" ng-click="changeLanguage('es')" width="30" height="20">
+  <input type="image" src="images/us.jpg" ng-click="changeLanguage('en')" width="30" height="20">
+</div>
+
+<h1 translate="IMPORTANT"></h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th translate="DESCRIPTION"></th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td translate='PARTICIPANTS'></td>
+      <td>
+        <a class="label label-info">{{getUserCount('participant')}}</a>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td translate='JUDGES'></td>
+      <td>
+        <a class="label label-info">{{getUserCount('participant')}}</a>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td translate='PROBLEMSTOSOLVE'></td>
+      <td>
+        <a class="label label-info">{{getTotalProblems()}}</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table" ng-repeat="document in documents | orderBy:'document.title':true" ng-show="document.type === 'problem'">
+  <thead>
+    <tr>
+      <th translate="DESCRIPTION"></th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>{{"PORCENTAGEUPLOAD" | translate}} {{document.title}} </td>
+      <td>
+        <a class="label label-info">{{getSolutions(document.title, 'all', 'true')}}%</a>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td>{{"PORCENTAGESUCCESS" | translate}} {{document.title}} </td>
+      <td>
+        <a class="label label-info">{{getSolutions(document.title, 'success', 'true')}}%</a>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td>{{"PORCENTAGEFAILURE" | translate}} {{document.title}} </td>
+      <td>
+        <a class="label label-info">{{getSolutions(document.title, 'failure', 'true')}}%</a>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td>{{"NUMBERUPLOAD" | translate}} {{document.title}} </td>
+      <td>
+        <a class="label label-info">{{getSolutions(document.title, 'all', 'false')}}</a>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td>{{"NUMBERSUCCESS" | translate}} {{document.title}} </td>
+      <td>
+        <a class="label label-info">{{getSolutions(document.title, 'success', 'false')}}</a>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td>{{"NUMBERFAILURE" | translate}} {{document.title}} </td>
+      <td>
+        <a class="label label-info">{{getSolutions(document.title, 'failure', 'false')}}</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
