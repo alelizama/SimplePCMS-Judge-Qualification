@@ -20,6 +20,12 @@
                         },
                         Users: function usersListResolve(Restangular) {
                             return Restangular.all('users').getList();
+                        },
+                        DocumentDefinition : function getDocumentDefinition (SailsResourceDefinitions) {
+                          return SailsResourceDefinitions.get('documents');
+                        },
+                        Documents: function documentsListResolve(Restangular) {
+                          return Restangular.all('documents').getList();
                         }
                     },
                 })

@@ -33,10 +33,14 @@
     "debug": "node debug app.js"
   },
   "main": "app.js",
-  "repository": {
+  "repository": [{
     "type": "git",
     "url": "git://github.com/jossemargt/SimplePCMS.git"
   },
+  {
+    "type": "git",
+    "url": "git://github.com/alelizama/SimplePCMS-Judge-Qualification.git"
+  }],
   "author": "jossemarGT;alelizama",
   "license": "GPLv2"
 }

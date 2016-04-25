@@ -1,23 +1,32 @@
 <header class="banner navbar navbar-default navbar-fixed-top" role="banner">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle btn navbar-btn" ng-init="navCollapsed = true"
-              ng-click="navCollapsed = !navCollapsed">
+      <button type="button" class="navbar-toggle btn navbar-btn" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand"  ui-sref="home">IX Olimpiada Interuniversitaria</a>
+      <a class="navbar-brand" ui-sref="home">IX Olimpiada Interuniversitaria</a>
     </div>
 
-      <nav collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
+    <nav collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li ng-class="{active: $state.includes('documents')}"><a <a ui-sref="documents.list" translate="DOCUMENTS"></a></li>
-        <li ng-class="{active: $state.includes('documents')}"><a ui-sref="documents.score" translate="SCORES"></a></li>
-        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'"><a ui-sref="users.list" translate="USERS"></a></li>
-        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'" ><a ui-sref="documents.solutions" translate="SOLUTIONS"></a></li>
-        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'"><a ui-sref="users.resume" translate="RESUME"></a></li>
+        <li ng-class="{active: $state.includes('documents')}">
+          <a <a ui-sref="documents.list" translate="DOCUMENTS"></a>
+        </li>
+        <li ng-class="{active: $state.includes('documents')}">
+          <a ui-sref="documents.score" translate="SCORES"></a>
+        </li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin'">
+          <a ui-sref="users.list" translate="USERS"></a>
+        </li>
+        <li ng-class="{active: $state.includes('documents')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'">
+          <a ui-sref="documents.solutions" translate="SOLUTIONS"></a>
+        </li>
+        <li ng-class="{active: $state.includes('user')}" ng-show="getUserType()==='admin' || getUserType() === 'judge'">
+          <a ui-sref="users.resume" translate="RESUME"></a>
+        </li>
         <!--<li ui-sref-active="active"><a ui-sref="about">About</a></li>-->
       </ul>
       <div class="container navbar-form navbar-right"></div>
@@ -26,8 +35,8 @@
 </header>
 
 <div class="form-group">
-    <input type="image" src="images/spain.png" ng-click="changeLanguage('es')" width="30" height="20">
-    <input type="image" src="images/us.jpg" ng-click="changeLanguage('en')" width="30" height="20">
+  <input type="image" src="images/spain.png" ng-click="changeLanguage('es')" width="30" height="20">
+  <input type="image" src="images/us.jpg" ng-click="changeLanguage('en')" width="30" height="20">
 </div>
 
 <h1 translate="LEADERBOARD"></h1>
@@ -41,7 +50,7 @@
   </thead>
 
   <tbody>
-    <tr ng-repeat="document in getDocuments() | orderBy:'ownerName':true" ng-show="document.type === 'code' && getUserType()==='participant' && document.ownerName === getOwnerName()" >
+    <tr ng-repeat="document in getDocuments() | orderBy:'ownerName':true" ng-show="document.type === 'code' && getUserType()==='participant' && document.ownerName === getOwnerName()">
       <td>{{document.ownerName}}</td>
       <td>
         <span ng-repeat="solution in documents track by $index" ng-show="solution.type === 'code' && solution.ownerName === getOwnerName()">
@@ -53,7 +62,7 @@
   </tbody>
 
   <tbody>
-    <tr ng-repeat="document in getDocuments() | orderBy:'ownerName':true" ng-show="document.type === 'code' && (getUserType() === 'judge' || getUserType() === 'admin')" >
+    <tr ng-repeat="document in getDocuments() | orderBy:'ownerName':true" ng-show="document.type === 'code' && (getUserType() === 'judge' || getUserType() === 'admin')">
       <td>{{document.ownerName}}</td>
       <td>
         <span ng-repeat="solution in documents track by $index" ng-show="solution.type === 'code' && document.ownerName === solution.ownerName ">

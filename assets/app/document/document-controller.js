@@ -134,7 +134,7 @@
       var base64Url = $window.sessionStorage.token.split('.')[1];
       var base64 = base64Url.replace('-', '+').replace('_', '/');
       var user = JSON.parse($window.atob(base64));
-      if(user.rol === 'judge')
+      if(user.rol === 'judge' || user.rol === 'admin')
       {
         for(var i = 0; i < document.finalScore.length; i++)
         {
